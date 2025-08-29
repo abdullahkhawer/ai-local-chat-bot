@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # n8n workflow orchestration
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: ai-chat-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678
+      - GENERIC_TIMEZONE=UTC
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./n8n-workflows:/home/node/.n8n/workflows
+    depends_on:
+      - qdrant
+      - ollama
+    networks:
+      - ai-chat-network
+
+  # Vector database for storing embeddings
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: ai-chat-qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+    networks:
+      - ai-chat-network
+
+  # Local AI model
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-chat-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    networks:
+      - ai-chat-network
+
+volumes:
+  n8n_data:
+  qdrant_data:
+  ollama_data:
+
+networks:
+  ai-chat-network:
+    driver: bridge

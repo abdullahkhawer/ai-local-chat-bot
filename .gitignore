@@ -1,0 +1,71 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+.pytest_cache/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.next/
+out/
+build/
+
+# Docker
+.dockerignore
+
+# Database
+*.db
+*.sqlite3
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Model files (large)
+*.bin
+*.safetensors
+models/
+
+# Ignore specific files
+helper-scripts/data
+
+# Ignore all files in demos directory
+demos/*
+
+# But keep .gif files in demos directory
+!demos/*.gif
