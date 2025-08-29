@@ -4,7 +4,7 @@
 
 # Introduction
 
-A local AI-powered chat assistant using n8n for workflow orchestration, Qdrant for vector storage, and Ollama for running local LLMs. It also includes helper scripts for downloading and processing Confluence pages as PDFs.
+AI Local Chat Bot is an AI-powered chat assistant like ChatGPT running and available locally using n8n for workflow orchestration, Qdrant for vector storage, and Ollama for running local LLMs. It also includes helper scripts for downloading and processing Confluence pages as PDFs.
 
 ## Features
 
